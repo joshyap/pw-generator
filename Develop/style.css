@@ -1,3 +1,5 @@
+
+
 *,
 *::before,
 *::after {
@@ -13,8 +15,12 @@ body,
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;  
   background-color: #f9fbfd;
+}
+
+button {
+  font-family: 'Poppins', sans-serif;  
 }
 
 .wrapper {

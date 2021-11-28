@@ -1,5 +1,4 @@
 // Assignment code here
-let pwLength;
 let pw = '';
 let options = [        
   ['@','%','+','\\','/',"'",'!','#','$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'], // 0
@@ -8,51 +7,33 @@ let options = [
   ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] // 3
 ];
 let masterOptions = [];
-let specialFlag;
-let numericFlag;
-let lowerFlag; 
-let upperFlag;
 
 function generatePassword() {  
-  reset();
-  validateInputs();
+  reset(); // reset default pw and options arrays
+  let pwLength = document.getElementById('length').value;
+  let specialFlag = document.getElementById('special').checked;
+  let numericFlag = document.getElementById('numeric').checked;
+  let lowerFlag = document.getElementById('lower').checked;
+  let upperFlag = document.getElementById('upper').checked;
 
   // masterOptions contains the available chars to be used in a generated pw
   if (specialFlag) {masterOptions = masterOptions.concat(options[0])};
   if (numericFlag) {masterOptions = masterOptions.concat(options[1])}; 
   if (lowerFlag) {masterOptions = masterOptions.concat(options[2])};
   if (upperFlag) {masterOptions = masterOptions.concat(options[3])};
-  
-  for (var i=0; i<pwLength; i++) {
-    pw += masterOptions[Math.floor(Math.random() * masterOptions.length)];
+
+  if (specialFlag === false && numericFlag === false && lowerFlag === false && upperFlag === false) {
+    alert('You must select at least one password configuration option.');
+    return null;
+  } else if (pwLength.length < 1) {
+    alert('You must select a valid password length.')
+  } else {
+    for (var i=0; i<pwLength; i++) {
+      pw += masterOptions[Math.floor(Math.random() * masterOptions.length)];
+    }
   }
 
   return pw;
-}
-
-function validateInputs() {
-  if (Number.isNaN(pwLength)) {
-    alert('Password length must be a number');
-    return null;
-  } else if (pwLength < 8) {
-    alert('Password length must be more than 7 characters.');
-    return null;
-  } else if (pwLength > 128) {
-    alert('Password length must be less than 129 characters.');  
-    return null;
-  } 
-
-  pwLength = parseInt(prompt('Choose a password length between 8 and 128 characters'));
-
-  specialFlag = confirm('Click OK to use special characters.');
-  numericFlag = confirm('Click OK to use numeric characters.');  
-  lowerFlag = confirm('Click OK to use lower case characters.');
-  upperFlag = confirm('Click OK to use upper case characters.');
-
-  if (specialFlag === false && numericFlag === false && lowerFlag === false && upperFlag === false) {
-    alert('You must select at least one password configuration option');
-    return null;
-  }
 }
 
 function reset() {
@@ -64,10 +45,6 @@ function reset() {
     ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] // 3
   ];
   masterOptions = [];
-  specialFlag = false;
-  numericFlag = false;
-  lowerFlag = false; 
-  upperFlag = false;
 }
 
 // original code below
