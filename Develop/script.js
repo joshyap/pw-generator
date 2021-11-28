@@ -22,7 +22,7 @@ function generatePassword() {
   if (lowerFlag) {masterOptions = masterOptions.concat(options[2])};
   if (upperFlag) {masterOptions = masterOptions.concat(options[3])};
 
-  // check that minimum selections are made before generating a new password
+  // check that minimum selections are made before generating a new
   if (specialFlag === false && numericFlag === false && lowerFlag === false && upperFlag === false) {
     alert('You must select at least one password configuration option.');
     return null;
