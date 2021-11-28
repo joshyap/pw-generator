@@ -22,13 +22,11 @@ function generatePassword() {
   if (numericFlag) {masterOptions = masterOptions.concat(options[1])}; 
   if (lowerFlag) {masterOptions = masterOptions.concat(options[2])};
   if (upperFlag) {masterOptions = masterOptions.concat(options[3])};
-  // console.log(masterOptions);
   
   for (var i=0; i<pwLength; i++) {
     pw += masterOptions[Math.floor(Math.random() * masterOptions.length)];
   }
 
-  console.log(pw);
   return pw;
 }
 
